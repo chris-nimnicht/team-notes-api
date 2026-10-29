@@ -10,7 +10,7 @@ class NotesController < ApplicationController
     else
       render json: {
         errors: note.errors.full_messages
-      }, status: :unprocessable_entity
+      }, status: :unprocessable_content
     end
   end
 
@@ -27,7 +27,7 @@ class NotesController < ApplicationController
     else
       render json: {
         errors: @note.errors.full_messages
-      }, status: :unprocessable_entity
+      }, status: :unprocessable_content
     end
   end
 
@@ -47,7 +47,8 @@ class NotesController < ApplicationController
     params.require(:note).permit(
       :title,
       :content,
-      :team_id
+      :team_id,
+      :created_by_user_id
     )
   end
 end

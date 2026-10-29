@@ -4,8 +4,10 @@ one:
   title: MyString
   content: MyText
   team: one
+  created_by_user: one
 
 two:
   title: MyString
   content: MyText
   team: two
+  created_by_user: two
