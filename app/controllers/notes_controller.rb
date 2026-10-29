@@ -3,7 +3,7 @@ class NotesController < ApplicationController
 
   # POST /notes
   def create
-    note = Note.new(note_params)
+    note = Note.new(note_create_params)
 
     if note.save
       render json: note, status: :created
@@ -22,7 +22,7 @@ class NotesController < ApplicationController
   # PATCH /notes/:id
   # PUT /notes/:id
   def update
-    if @note.update(note_params)
+    if @note.update(note_update_params)
       render json: @note
     else
       render json: {
@@ -43,12 +43,11 @@ class NotesController < ApplicationController
     @note = Note.find(params[:id])
   end
 
-  def note_params
-    params.require(:note).permit(
-      :title,
-      :content,
-      :team_id,
-      :created_by_user_id
-    )
+  def note_create_params
+    params.require(:note).permit(:title, :content, :team_id, :created_by_user_id)
+  end
+
+  def note_update_params
+    params.require(:note).permit(:title, :content)
   end
 end
